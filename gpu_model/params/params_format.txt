@@ -1,0 +1,20 @@
+threads
+blocks
+mem_insts
+sync_insts
+SFU_insts
+total_insts
+warps_per_SM
+active_SM
+CF_overhead
+bank_overhead
+total_mem_req
+trans_32
+trans_64
+trans_128
+independent
+duplicate
+L1 miss
+L2 miss
+ILP
+MLP

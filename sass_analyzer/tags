@@ -1,0 +1,103 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ACML_DIRS	Makefile	/^ACML_DIRS=-I\/opt\/acml4.4.0\/gfortran32_mp\/include$/;"	m
+BLAS_LIBS	Makefile	/^BLAS_LIBS=-L\/opt\/acml4.4.0\/gfortran32\/lib -lacml -llapack -lgfortran$/;"	m
+Barrier	src/inst_types.h	/^	Barrier$/;"	e	enum:opcode_type
+Branch	src/inst_types.h	/^	Branch,$/;"	e	enum:opcode_type
+CC	Makefile	/^CC=gcc -fPIC -ggdb$/;"	m
+CFLAGS	Makefile	/^CFLAGS=${FLAGS} -ggdb$/;"	m
+CUDA_DIRS	Makefile	/^CUDA_DIRS=-I\/usr\/local\/cuda\/include$/;"	m
+CUDA_LIBS	Makefile	/^CUDA_LIBS=-L\/usr\/local\/cuda\/lib -lcudart -lcublas$/;"	m
+CU_OBJS	Makefile	/^CU_OBJS=$(subst .cu,.o,${CU_SOURCES})$/;"	m
+CU_SOURCES	Makefile	/^CU_SOURCES=$(foreach dir,${DIRS},$(wildcard ${dir}\/*.cu)) $/;"	m
+CXX	Makefile	/^CXX=g++ -fPIC -ggdb -std=c++0x$/;"	m
+CXXFLAGS	Makefile	/^CXXFLAGS=${FLAGS} -ggdb$/;"	m
+CXX_OBJS	Makefile	/^CXX_OBJS=$(subst .cpp,.o,${CXX_SOURCES})$/;"	m
+CXX_SOURCES	Makefile	/^CXX_SOURCES=$(foreach dir,${DIRS},$(wildcard ${dir}\/*.cpp)) $/;"	m
+Cache	src/inst_types.h	/^	Cache$/;"	e	enum:operand_type
+Constant	src/inst_types.h	/^	Constant,$/;"	e	enum:operand_type
+DIRS	Makefile	/^DIRS=src$/;"	m
+FLAGS	Makefile	/^FLAGS=${INCLUDE_DIRS} ${CUDA_DIRS} ${MATLAB_DIRS} ${ACML_DIRS}$/;"	m
+ILP	src/inst_types.h	/^	double ILP, MLP;$/;"	m	struct:__anon4	access:public
+INCLUDE_DIRS	Makefile	/^INCLUDE_DIRS=$(foreach dir,${DIRS},-I${dir}) $/;"	m
+INST_TYPES_H	src/inst_types.h	8;"	d
+LIBS	Makefile	/^LIBS=$/;"	m
+LIB_DIRS	Makefile	/^LIB_DIRS=-L\/usr\/lib\/i386-linux-gnu\/$/;"	m
+LINK_FLAGS	Makefile	/^LINK_FLAGS=${LIB_DIRS} ${LIBS} -pthread$/;"	m
+Load	src/inst_types.h	/^	Load,$/;"	e	enum:opcode_type
+MATLAB_DIRS	Makefile	/^MATLAB_DIRS=-I\/usr\/local\/MATLAB\/R2012a\/extern\/include$/;"	m
+MATLAB_LIBS	Makefile	/^MATLAB_LIBS=-L\/usr\/local\/MATLAB\/R2012a\/bin\/glnx86 -lmat -lmex -leng -lut -lmx$/;"	m
+MLP	src/inst_types.h	/^	double ILP, MLP;$/;"	m	struct:__anon4	access:public
+MLP_ent	src/main.cpp	/^	MLP_ent( string reg = "", int load_idx = -1 ) $/;"	f	struct:MLP_ent	access:public	signature:( string reg = Ó, int load_idx = -1 )
+MLP_ent	src/main.cpp	/^typedef struct MLP_ent{$/;"	s	file:
+MLP_ent::MLP_ent	src/main.cpp	/^	MLP_ent( string reg = "", int load_idx = -1 ) $/;"	f	struct:MLP_ent	access:public	signature:( string reg = Ó, int load_idx = -1 )
+MLP_ent::load_count	src/main.cpp	/^	int load_count;$/;"	m	struct:MLP_ent	file:	access:public
+MLP_ent::load_idx	src/main.cpp	/^	int load_idx;$/;"	m	struct:MLP_ent	file:	access:public
+MLP_ent::reg	src/main.cpp	/^	string reg;$/;"	m	struct:MLP_ent	file:	access:public
+MLP_ent::use_idx	src/main.cpp	/^	int use_idx;$/;"	m	struct:MLP_ent	file:	access:public
+MLP_entry	src/main.cpp	/^} MLP_entry;$/;"	t	typeref:struct:MLP_ent	file:
+Memory	src/inst_types.h	/^	Memory,$/;"	e	enum:operand_type
+NVCC	Makefile	/^NVCC=nvcc$/;"	m
+NVCC_FLAGS	Makefile	/^NVCC_FLAGS=${FLAGS} -arch sm_13$/;"	m
+None	src/inst_types.h	/^	None,$/;"	e	enum:operand_type
+Normal	src/inst_types.h	/^	Normal,$/;"	e	enum:opcode_type
+OBJS	Makefile	/^OBJS=${CU_OBJS} ${CXX_OBJS}$/;"	m
+Register	src/inst_types.h	/^	Register,$/;"	e	enum:operand_type
+SFU	src/inst_types.h	/^	SFU,$/;"	e	enum:opcode_type
+Setp	src/inst_types.h	/^	Setp,$/;"	e	enum:opcode_type
+Store	src/inst_types.h	/^	Store,$/;"	e	enum:opcode_type
+TARGET	Makefile	/^TARGET=sass_analyze$/;"	m
+__anon1::location	src/inst_types.h	/^	std::string location;$/;"	m	struct:__anon1	access:public
+__anon1::toString	src/inst_types.h	/^	std::string toString()$/;"	f	struct:__anon1	access:public	signature:()
+__anon1::type	src/inst_types.h	/^	operand_type type;$/;"	m	struct:__anon1	access:public
+__anon2::isCondition	src/inst_types.h	/^	bool isCondition;$/;"	m	struct:__anon2	access:public
+__anon2::reg	src/inst_types.h	/^	std::string reg;$/;"	m	struct:__anon2	access:public
+__anon2::toString	src/inst_types.h	/^	std::string toString()$/;"	f	struct:__anon2	access:public	signature:()
+__anon3::addr	src/inst_types.h	/^	uint32_t addr;$/;"	m	struct:__anon3	access:public
+__anon3::cond	src/inst_types.h	/^	condition cond;$/;"	m	struct:__anon3	access:public
+__anon3::dest	src/inst_types.h	/^	operand dest;$/;"	m	struct:__anon3	access:public
+__anon3::opcode	src/inst_types.h	/^	opcode_type opcode;$/;"	m	struct:__anon3	access:public
+__anon3::opcode_str	src/inst_types.h	/^	std::string opcode_str;$/;"	m	struct:__anon3	access:public
+__anon3::srcs	src/inst_types.h	/^	std::vector<operand> srcs;$/;"	m	struct:__anon3	access:public
+__anon3::toString	src/inst_types.h	/^	std::string toString()$/;"	f	struct:__anon3	access:public	signature:()
+__anon4::ILP	src/inst_types.h	/^	double ILP, MLP;$/;"	m	struct:__anon4	access:public
+__anon4::MLP	src/inst_types.h	/^	double ILP, MLP;$/;"	m	struct:__anon4	access:public
+__anon4::group_starts	src/inst_types.h	/^	std::vector<int> group_starts;$/;"	m	struct:__anon4	access:public
+__anon4::insts	src/inst_types.h	/^	std::vector<instruction> insts;$/;"	m	struct:__anon4	access:public
+__anon4::next_blocks	src/inst_types.h	/^	std::vector<int> next_blocks;$/;"	m	struct:__anon4	access:public
+addr	src/inst_types.h	/^	uint32_t addr;$/;"	m	struct:__anon3	access:public
+basic_block	src/inst_types.h	/^} basic_block;$/;"	t	typeref:struct:__anon4
+cond	src/inst_types.h	/^	condition cond;$/;"	m	struct:__anon3	access:public
+condition	src/inst_types.h	/^} condition;$/;"	t	typeref:struct:__anon2
+dest	src/inst_types.h	/^	operand dest;$/;"	m	struct:__anon3	access:public
+extract_srcs	src/main.cpp	/^vector<string> extract_srcs( string src )$/;"	f	signature:( string src )
+extract_srcs	src/main.cpp	/^vector<string> extract_srcs( string src );$/;"	p	file:	signature:( string src )
+group_starts	src/inst_types.h	/^	std::vector<int> group_starts;$/;"	m	struct:__anon4	access:public
+instruction	src/inst_types.h	/^} instruction;$/;"	t	typeref:struct:__anon3
+insts	src/inst_types.h	/^	std::vector<instruction> insts;$/;"	m	struct:__anon4	access:public
+isCondition	src/inst_types.h	/^	bool isCondition;$/;"	m	struct:__anon2	access:public
+load_count	src/main.cpp	/^	int load_count;$/;"	m	struct:MLP_ent	file:	access:public
+load_idx	src/main.cpp	/^	int load_idx;$/;"	m	struct:MLP_ent	file:	access:public
+location	src/inst_types.h	/^	std::string location;$/;"	m	struct:__anon1	access:public
+main	src/main.cpp	/^int main( int argc, char **argv )$/;"	f	signature:( int argc, char **argv )
+next_blocks	src/inst_types.h	/^	std::vector<int> next_blocks;$/;"	m	struct:__anon4	access:public
+opcode	src/inst_types.h	/^	opcode_type opcode;$/;"	m	struct:__anon3	access:public
+opcode_str	src/inst_types.h	/^	std::string opcode_str;$/;"	m	struct:__anon3	access:public
+opcode_toString	src/inst_types.h	/^std::string opcode_toString(opcode_type op)$/;"	f	signature:(opcode_type op)
+opcode_type	src/inst_types.h	/^enum opcode_type$/;"	g
+operand	src/inst_types.h	/^} operand;$/;"	t	typeref:struct:__anon1
+operand_type	src/inst_types.h	/^enum operand_type$/;"	g
+parse_instruction	src/main.cpp	/^void parse_instruction( instruction &inst, string s )$/;"	f	signature:( instruction &inst, string s )
+parse_instruction	src/main.cpp	/^void parse_instruction( instruction &inst, string s );$/;"	p	file:	signature:( instruction &inst, string s )
+reg	src/inst_types.h	/^	std::string reg;$/;"	m	struct:__anon2	access:public
+reg	src/main.cpp	/^	string reg;$/;"	m	struct:MLP_ent	file:	access:public
+srcs	src/inst_types.h	/^	std::vector<operand> srcs;$/;"	m	struct:__anon3	access:public
+toString	src/inst_types.h	/^	std::string toString()$/;"	f	struct:__anon1	access:public	signature:()
+toString	src/inst_types.h	/^	std::string toString()$/;"	f	struct:__anon2	access:public	signature:()
+toString	src/inst_types.h	/^	std::string toString()$/;"	f	struct:__anon3	access:public	signature:()
+type	src/inst_types.h	/^	operand_type type;$/;"	m	struct:__anon1	access:public
+use_idx	src/main.cpp	/^	int use_idx;$/;"	m	struct:MLP_ent	file:	access:public
