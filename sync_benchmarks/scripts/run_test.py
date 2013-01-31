@@ -7,7 +7,7 @@ import sys
 import datetime
 
 # arrays for different test parameters
-blocks = range( 10, 1000+1, 10 )
+blocks = range( 10, 400, 1 ) + range( 400, 1000, 10 )			# HW
 
 threads = range(64, 256+1, 32 )
 op_types = [ "read", "write" ]

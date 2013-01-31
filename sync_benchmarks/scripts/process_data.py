@@ -6,7 +6,8 @@ import os
 import sys
 
 # arrays for different test parameters
-blocks = range( 10, 1000+1, 10 )
+blocks = range( 10, 400, 1 ) + range( 400, 1000, 10 )			# HW
+
 threads = range(64, 256+1, 32 )
 op_types = [ "read", "read_cached", "read_uncached", "write" ]
 mem_types = [ "global", "shared" ]
