@@ -11,9 +11,6 @@ threads = range(64, 256+1, 32 )
 op_types = [ "read", "read_cached", "read_uncached", "write" ]
 mem_types = [ "global", "shared" ]
 
-# /dev/null file pointer
-devNull = open("/dev/null", "w")
-
 print( "Processing data" )
 
 if( len(sys.argv) < 1 ):
@@ -48,6 +45,7 @@ for mem_type in mem_types:
 
 							for line in dataFile.xreadlines():
 								values = map(int, line.strip().split(" "))
+								# values = [ CTA_ID, PC, start, end, elapsed ]
 
 								if( values[1] not in pcs ):
 									pcs.append( values[1] )
@@ -68,7 +66,7 @@ for mem_type in mem_types:
 								avgFile.write( str(avg[0]/count[0]) + ",")
 
 							numFiles += 1
-							if( numFiles % 100 = 0 ):
+							if( numFiles % 100 == 0 ):
 								print(".", end="")
 
 					except IOError:

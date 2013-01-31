@@ -53,14 +53,14 @@ void global_mem_write( unsigned int num_blocks, unsigned int num_threads )
 	// copy data back, ensures kernel has finished
 	cudaMemcpy( data_cpu, data_gpu, block_size*threads*sizeof(float), cudaMemcpyDeviceToHost );
 	cudaMemcpy( start, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
-	cudaMemcpy( end, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
+	cudaMemcpy( end, end_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 
 	format_data( start, end, threads, block_size );
 
 	// now free the memory
 	cudaFree( data_gpu );
 	cudaFree( start_gpu );
-	cudaFree( start_gpu );
+	cudaFree( end_gpu );
 
 	free( data_cpu );
 	free( start );
@@ -113,14 +113,14 @@ void global_mem_read( unsigned int num_blocks, unsigned int num_threads, bool us
 	// copy data back, ensures kernel has finished
 	cudaMemcpy( data_cpu, data_gpu, block_size*threads*sizeof(float), cudaMemcpyDeviceToHost );
 	cudaMemcpy( start, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
-	cudaMemcpy( end, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
+	cudaMemcpy( end, end_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 
 	format_data( start, end, threads, block_size );
 
 	// now free the memory
 	cudaFree( data_gpu );
 	cudaFree( start_gpu );
-	cudaFree( start_gpu );
+	cudaFree( end_gpu );
 
 	free( data_cpu );
 	free( start );

@@ -86,4 +86,5 @@ ax.set_zlabel( 'Average sync cost' )
 #ax.set_ylabel( 'Number of Threads/Block' )
 #ax.set_zlabel( 'Average sync cost' )
 
+fig.savefig("%s.png" % (sys.argv[1][:-4]))
 plt.show()

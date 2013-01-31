@@ -114,6 +114,8 @@ void format_data( unsigned int *start, unsigned int *end, int block_size, int bl
 
 	for( int i = 0; i < block_size*blocks; i+=32 )
 	{
+		//printf("%i %i\n", start[i], end[i]);
+
 		if( i % block_size == 0 )
 		{
 			if( max_elapsed > 0 )
