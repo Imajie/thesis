@@ -27,6 +27,7 @@ for mem_type in mem_types:
 		numFiles = 0
 
 		print("%s %s: "% (mem_type, op_type), end ="")
+		sys.stdout.flush()
 
 		with open(fileName, "w") as avgFile:
 			# write out blocks header
@@ -66,8 +67,9 @@ for mem_type in mem_types:
 								avgFile.write( str(avg[0]/count[0]) + ",")
 
 							numFiles += 1
-							if( numFiles % 100 == 0 ):
+							if( numFiles % 50 == 0 ):
 								print(".", end="")
+								sys.stdout.flush()
 
 					except IOError:
 						# file not found
