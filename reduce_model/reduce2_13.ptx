@@ -1,0 +1,122 @@
+	.version 1.4
+	.target sm_13
+	// compiled with /usr/local/cuda/open64/lib//be
+	// nvopencc 4.1 built on 2012-04-05
+
+	//-----------------------------------------------------------
+	// Compiling /tmp/tmpxft_00003a19_00000000-9_reduction_kernel.cpp3.i (/tmp/ccBI#.nkBJPe)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_13, Endian:little, Pointer Size:32
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"<command-line>"
+	.file	2	"/tmp/tmpxft_00003a19_00000000-8_reduction_kernel.cudafe2.gpu"
+	.file	3	"/usr/lib/gcc/i686-linux-gnu/4.6.1/include/stddef.h"
+	.file	4	"/usr/local/cuda/bin/../include/crt/device_runtime.h"
+	.file	5	"/usr/local/cuda/bin/../include/host_defines.h"
+	.file	6	"/usr/local/cuda/bin/../include/builtin_types.h"
+	.file	7	"/usr/local/cuda/bin/../include/device_types.h"
+	.file	8	"/usr/local/cuda/bin/../include/driver_types.h"
+	.file	9	"/usr/local/cuda/bin/../include/surface_types.h"
+	.file	10	"/usr/local/cuda/bin/../include/texture_types.h"
+	.file	11	"/usr/local/cuda/bin/../include/vector_types.h"
+	.file	12	"/usr/local/cuda/bin/../include/device_launch_parameters.h"
+	.file	13	"/usr/local/cuda/bin/../include/crt/storage_class.h"
+	.file	14	"reduction_kernel.cu"
+	.file	15	"/usr/local/cuda/bin/../include/common_functions.h"
+	.file	16	"/usr/local/cuda/bin/../include/math_functions.h"
+	.file	17	"/usr/local/cuda/bin/../include/math_constants.h"
+	.file	18	"/usr/local/cuda/bin/../include/device_functions.h"
+	.file	19	"/usr/local/cuda/bin/../include/sm_11_atomic_functions.h"
+	.file	20	"/usr/local/cuda/bin/../include/sm_12_atomic_functions.h"
+	.file	21	"/usr/local/cuda/bin/../include/sm_13_double_functions.h"
+	.file	22	"/usr/local/cuda/bin/../include/sm_20_atomic_functions.h"
+	.file	23	"/usr/local/cuda/bin/../include/sm_20_intrinsics.h"
+	.file	24	"/usr/local/cuda/bin/../include/sm_30_intrinsics.h"
+	.file	25	"/usr/local/cuda/bin/../include/surface_functions.h"
+	.file	26	"/usr/local/cuda/bin/../include/texture_fetch_functions.h"
+	.file	27	"/usr/local/cuda/bin/../include/math_functions_dbl_ptx3.h"
+
+	.extern	.shared .align 8 .b8 __smem_d[];
+
+	.entry _Z7reduce2IdEvPT_S1_j (
+		.param .u32 __cudaparm__Z7reduce2IdEvPT_S1_j_g_idata,
+		.param .u32 __cudaparm__Z7reduce2IdEvPT_S1_j_g_odata,
+		.param .u32 __cudaparm__Z7reduce2IdEvPT_S1_j_n)
+	{
+	.reg .u32 %r<25>;
+	.reg .f64 %fd<7>;
+	.reg .pred %p<7>;
+	.loc	14	151	0
+$LDWbegin__Z7reduce2IdEvPT_S1_j:
+	cvt.u32.u16 	%r1, %ntid.x;
+	cvt.u32.u16 	%r2, %ctaid.x;
+	mul.lo.u32 	%r3, %r1, %r2;
+	cvt.u32.u16 	%r4, %tid.x;
+	add.u32 	%r5, %r3, %r4;
+	ld.param.u32 	%r6, [__cudaparm__Z7reduce2IdEvPT_S1_j_n];
+	setp.le.u32 	%p1, %r6, %r5;
+	@%p1 bra 	$Lt_0_3842;
+	.loc	14	159	0
+	ld.param.u32 	%r7, [__cudaparm__Z7reduce2IdEvPT_S1_j_g_idata];
+	mul.lo.u32 	%r8, %r5, 8;
+	add.u32 	%r9, %r7, %r8;
+	ld.global.f64 	%fd1, [%r9+0];
+	bra.uni 	$Lt_0_3586;
+$Lt_0_3842:
+	mov.f64 	%fd1, 0d0000000000000000;	// 0
+$Lt_0_3586:
+	mov.u32 	%r10, __smem_d;
+	mul24.lo.u32 	%r11, %r4, 8;
+	add.u32 	%r12, %r11, %r10;
+	st.shared.f64 	[%r12+0], %fd1;
+	.loc	14	161	0
+	bar.sync 	0;
+	.loc	14	164	0
+	shr.u32 	%r13, %r1, 1;
+	mov.s32 	%r14, %r13;
+	mov.u32 	%r15, 0;
+	setp.eq.u32 	%p2, %r13, %r15;
+	@%p2 bra 	$Lt_0_4098;
+$Lt_0_4610:
+	setp.le.u32 	%p3, %r14, %r4;
+	@%p3 bra 	$Lt_0_4866;
+	.loc	14	168	0
+	ld.shared.f64 	%fd2, [%r12+0];
+	add.u32 	%r16, %r14, %r4;
+	mul.lo.u32 	%r17, %r16, 8;
+	add.u32 	%r18, %r10, %r17;
+	ld.shared.f64 	%fd3, [%r18+0];
+	add.f64 	%fd4, %fd2, %fd3;
+	st.shared.f64 	[%r12+0], %fd4;
+$Lt_0_4866:
+	.loc	14	170	0
+	bar.sync 	0;
+	.loc	14	164	0
+	shr.u32 	%r14, %r14, 1;
+	mov.u32 	%r19, 0;
+	setp.ne.u32 	%p4, %r14, %r19;
+	@%p4 bra 	$Lt_0_4610;
+$Lt_0_4098:
+	mov.u32 	%r20, 0;
+	setp.ne.u32 	%p5, %r4, %r20;
+	@%p5 bra 	$Lt_0_5634;
+	.loc	14	174	0
+	ld.shared.f64 	%fd5, [__smem_d+0];
+	ld.param.u32 	%r21, [__cudaparm__Z7reduce2IdEvPT_S1_j_g_odata];
+	mul24.lo.u32 	%r22, %r2, 8;
+	add.u32 	%r23, %r21, %r22;
+	st.global.f64 	[%r23+0], %fd5;
+$Lt_0_5634:
+	.loc	14	175	0
+	exit;
+$LDWend__Z7reduce2IdEvPT_S1_j:
+	} // _Z7reduce2IdEvPT_S1_j
+

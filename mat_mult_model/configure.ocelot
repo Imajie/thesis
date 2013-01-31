@@ -1,0 +1,61 @@
+{
+	ocelot: "ocelot",
+	version: "",
+	trace: { 
+		enabled: true,
+		database: "traces/database.trace",
+		memory: true,
+		memoryChecker: {
+			enabled: true,
+			checkInitialization: false
+		},
+		raceDetector: {
+			enabled: false,
+			ignoreIrrelevantWrites: true
+		},
+		debugger: {
+			enabled: false,
+			kernelFilter: "_Z24fermiDgemm_v3_kernel_valILb0ELb0ELi5ELi5ELi3ELi8ELi8ELb1EEviiiPKdiS1_iPdiddii",
+			alwaysAttach: true
+		},
+		warpSynchronous: {
+			enabled: true,
+			emitHotPaths: true
+		},
+		cacheSimulator: {
+			enabled: false
+		},
+		performanceBound: {
+			enabled: false,
+			protocol: "sm_20",
+			output: "dot"
+		},
+		convergence: {
+			enabled: false,
+			logfile: "traces/convergence.log",
+			dot: true
+		},
+		instruction: true,
+		branch: true,
+		parallelism: false,
+		sharedComputation: false,
+		basicBlockCount: true
+	},
+	cuda: {
+		implementation: CudaRuntime,
+		runtimeApiTrace: "trace/CudaAPI.trace"
+	},
+	executive: {
+		devices: [ emulated ],
+		port: 2011,
+		host: "127.0.0.1",
+		optimizationLevel: none,
+		workerThreadLimit: 2,
+		warpSize: 32,
+		dynamicWarpFormation: false,
+		threadInvariantElimination: false,
+		yieldOverheadInstrumentation: true,
+		printLLVMModule: false
+	},
+}
+

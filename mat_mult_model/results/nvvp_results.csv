@@ -1,0 +1,6 @@
+Name,Start Time(ns),Duration(ns),GridX,GridY,GridZ,BlockX,BlockY,BlockZ,Registers/Thread,Static Shared Memory,Dynamic Shared Memory,Size(bytes),Throughput(bytes/sec),Branch Efficiency(%),gst request,gst total,gst 128B,gst 64B,gst 32B,gld request,gld total,gld 128B,gld 64B,gld 32B,warp serialize,divergent branch,branch,instructions
+"Memcpy HtoD [sync]",1503884747,4768,,,,,,,,,,112,23489932,,,,,,,,,,,,,,,
+"Memcpy HtoD [sync]",1506063837,516004,,,,,,,,,,720000,1395338020,,,,,,,,,,,,,,,
+"Memcpy HtoD [sync]",1506880484,515396,,,,,,,,,,720000,1396984066,,,,,,,,,,,,,,,
+"void gemm_kernel1x1_val<double, false, false, false, false, false>(double*, double const*, double const*, int, int, int, int, int, int, double, double)",1507404232,1254634,19,19,1,16,16,1,16,4424,0,,,98.911,102,431,431,292,292,3888,38547,16351,11098,11098,204842,258,23690,254291
+"Memcpy DtoH [sync]",1508661586,425252,,,,,,,,,,720000,1693113730,,,,,,,,,,,,,,,

@@ -1,0 +1,5 @@
+{ app: "UnknownApplication", kernel: "_Z18gemm_kernel2x2_valIdLb0ELb0ELb0ELb0ELb0EEvPT_PKS0_S3_iiiiiiS0_S0_", warpActiveCount: 210074, warpIssueCount: 420148, threadActiveCount: 6650336 },
+{ app: "UnknownApplication", kernel: "_Z18gemm_kernel2x2_valIdLb0ELb0ELb0ELb0ELb0EEvPT_PKS0_S3_iiiiiiS0_S0_", warpActiveCount: 210074, warpIssueCount: 420148, threadActiveCount: 6650336 },
+{ app: "UnknownApplication", kernel: "_Z18gemm_kernel2x2_valIdLb0ELb0ELb0ELb0ELb0EEvPT_PKS0_S3_iiiiiiS0_S0_", warpActiveCount: 210074, warpIssueCount: 420148, threadActiveCount: 6650336 },
+{ app: "UnknownApplication", kernel: "_Z18gemm_kernel2x2_valIdLb0ELb0ELb0ELb0ELb0EEvPT_PKS0_S3_iiiiiiS0_S0_", warpActiveCount: 210074, warpIssueCount: 420148, threadActiveCount: 6650336 },
+{ app: "UnknownApplication", kernel: "_Z18gemm_kernel2x2_valIdLb0ELb0ELb0ELb0ELb0EEvPT_PKS0_S3_iiiiiiS0_S0_", warpActiveCount: 210074, warpIssueCount: 420148, threadActiveCount: 6650336 },
