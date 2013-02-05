@@ -28,6 +28,7 @@ int main( int argc, char** argv )
 	int blocks = 10;
 	int threads = 128;
 	int avg_count = 1;
+	bool sim = false;
 
 	int use_cache = 0;
 
@@ -57,6 +58,12 @@ int main( int argc, char** argv )
 	{
 		avg_count = atoi(argv[5]);
 	}
+	
+	if( argc > 6 )
+	{
+		if( strcmp( argv[6], "sim" ) == 0 )
+			sim = true;
+	}
 
 	switch( mem_type )
 	{
@@ -65,15 +72,15 @@ int main( int argc, char** argv )
 			{
 				case WRITE:
 					printf("Running Global Write\n");
-					for(int i=0;i<avg_count;i++ ) global_mem_write( blocks, threads );
+					for(int i=0;i<avg_count;i++ ) global_mem_write( sim, blocks, threads );
 					break;
 				case READ:
 					printf("Running Global Read\n");
 					fprintf(stderr, "_NO_CACHE_\n");
-					for(int i=0;i<avg_count;i++ ) global_mem_read( blocks, threads, false);
+					for(int i=0;i<avg_count;i++ ) global_mem_read( sim, blocks, threads, false);
 
 					fprintf(stderr, "_WITH_CACHE_\n");
-					for(int i=0;i<avg_count;i++ ) global_mem_read( blocks, threads, true);
+					for(int i=0;i<avg_count;i++ ) global_mem_read( sim, blocks, threads, true);
 					break;
 			}
 			break;
@@ -83,11 +90,11 @@ int main( int argc, char** argv )
 			{
 				case WRITE:
 					printf("Running Shared Write\n");
-					for(int i=0;i<avg_count;i++ ) shared_mem_write( blocks, threads );
+					for(int i=0;i<avg_count;i++ ) shared_mem_write( sim, blocks, threads );
 					break;
 				case READ:
 					printf("Running Shared Read\n");
-					for(int i=0;i<avg_count;i++ ) shared_mem_read( blocks, threads );
+					for(int i=0;i<avg_count;i++ ) shared_mem_read( sim, blocks, threads );
 					break;
 			}
 			break;

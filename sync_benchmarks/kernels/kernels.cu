@@ -102,9 +102,7 @@ __global__ void shared_mem_read_kernel( unsigned int *start, unsigned int *end )
 	start[idx] = start_reg;
 	end[idx] = end_reg;
 
-	// never used val warning
-	if( val > 0 )
-		start_reg = end_reg;
+	data[idx2] = val+start_reg;
 }
 
 void format_data( unsigned int *start, unsigned int *end, int block_size, int blocks )

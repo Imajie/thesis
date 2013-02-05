@@ -7,7 +7,7 @@
 #include "shared_mem.h"
 #include "kernels.h"
 
-void shared_mem_write( unsigned int num_blocks, unsigned int num_threads )
+void shared_mem_write( bool sim, unsigned int num_blocks, unsigned int num_threads )
 {
 	int block_size;
 	int threads;
@@ -49,7 +49,7 @@ void shared_mem_write( unsigned int num_blocks, unsigned int num_threads )
 	cudaMemcpy( start, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 	cudaMemcpy( end, end_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 
-	format_data( start, end, threads, block_size );
+	if( !sim ) format_data( start, end, threads, block_size );
 
 	// now free the memory
 	cudaFree( start_gpu );
@@ -59,7 +59,7 @@ void shared_mem_write( unsigned int num_blocks, unsigned int num_threads )
 	free( end );
 }
 
-void shared_mem_read( unsigned int num_blocks, unsigned int num_threads )
+void shared_mem_read( bool sim, unsigned int num_blocks, unsigned int num_threads )
 {
 	int block_size;
 	int threads;
@@ -80,8 +80,8 @@ void shared_mem_read( unsigned int num_blocks, unsigned int num_threads )
 	unsigned int *end = new unsigned int[ block_size*threads ];
 	for( int i = 0; i < block_size*threads; i++ )
 	{
-		start[i] = 0.0;
-		end[i] = 0.0;
+		start[i] = 0;
+		end[i] = 0;
 	}
 
 	// allocate space on gpu, and copy it
@@ -101,7 +101,7 @@ void shared_mem_read( unsigned int num_blocks, unsigned int num_threads )
 	cudaMemcpy( start, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 	cudaMemcpy( end, end_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 
-	format_data( start, end, threads, block_size );
+	if( !sim ) format_data( start, end, threads, block_size );
 
 	// now free the memory
 	cudaFree( start_gpu );

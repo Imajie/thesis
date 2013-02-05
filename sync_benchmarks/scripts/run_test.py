@@ -17,8 +17,18 @@ mem_types = [ "global", "shared" ]
 devNull = open(os.devnull, 'w')
 
 avg_count = 1
-if( len(sys.argv) > 1 ):
-	avg_count = int(sys.argv[1])
+sim = ""
+
+try:
+	if( len(sys.argv) > 1 ):
+		avg_count = int(sys.argv[1])
+
+	if( len(sys.argv) > 2 ):
+		if( sys.argv[2] == "sim" ):
+			sim = "sim"
+except:
+	if( sys.argv[1] == "sim" ):
+		sim = "sim"
 
 date = datetime.datetime.now().strftime("%b-%d-%I%M%p")
 
@@ -36,10 +46,10 @@ for mem_type in mem_types:
 				fileName = "results-%s/%s_%s_%i_%i.txt" % (date, mem_type, op_type, block, thread)
 				with open( fileName, "w" ) as errOut:
 					# run the test
-					print( "Running: './benchmark %i %i %s %s' %i times" % ( block, thread, op_type, mem_type, avg_count ), end="" )
+					print( "Running: './benchmark %i %i %s %s %s' %i times" % ( block, thread, op_type, mem_type, sim, avg_count ), end="" )
 					sys.stdout.flush()
 
-					retVal = subprocess.call(["./benchmark", str(block), str(thread), str(op_type), str(mem_type), str(avg_count)], stdout=devNull, stderr=errOut);
+					retVal = subprocess.call(["./benchmark", str(block), str(thread), str(op_type), str(mem_type), str(avg_count), str(sim)], stdout=devNull, stderr=errOut);
 			
 					if( retVal == 0 ):
 						print( " -> Successful" )

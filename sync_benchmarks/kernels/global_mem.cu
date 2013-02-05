@@ -7,7 +7,7 @@
 #include "global_mem.h"
 #include "kernels.h"
 
-void global_mem_write( unsigned int num_blocks, unsigned int num_threads )
+void global_mem_write( bool sim, unsigned int num_blocks, unsigned int num_threads )
 {
 	int block_size;
 	int threads;
@@ -55,7 +55,7 @@ void global_mem_write( unsigned int num_blocks, unsigned int num_threads )
 	cudaMemcpy( start, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 	cudaMemcpy( end, end_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 
-	format_data( start, end, threads, block_size );
+	if( !sim ) format_data( start, end, threads, block_size );
 
 	// now free the memory
 	cudaFree( data_gpu );
@@ -67,7 +67,7 @@ void global_mem_write( unsigned int num_blocks, unsigned int num_threads )
 	free( end );
 }
 
-void global_mem_read( unsigned int num_blocks, unsigned int num_threads, bool use_cache )
+void global_mem_read( bool sim, unsigned int num_blocks, unsigned int num_threads, bool use_cache )
 {
 	int block_size;
 	int threads;
@@ -115,7 +115,7 @@ void global_mem_read( unsigned int num_blocks, unsigned int num_threads, bool us
 	cudaMemcpy( start, start_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 	cudaMemcpy( end, end_gpu, block_size*threads*sizeof(unsigned int), cudaMemcpyDeviceToHost );
 
-	format_data( start, end, threads, block_size );
+	if( !sim ) format_data( start, end, threads, block_size );
 
 	// now free the memory
 	cudaFree( data_gpu );
