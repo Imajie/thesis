@@ -7,9 +7,9 @@ import sys
 import datetime
 
 # arrays for different test parameters
-blocks = range( 10, 400, 1 ) + range( 400, 1000, 10 )			# HW
+blocks = range( 10, 400, 1 ) + range( 400, 1000, 10 ) + range( 1000, 2000, 50 )			# HW
 
-threads = range(64, 256+1, 32 )
+threads = range(64, 1024+1, 32 )
 op_types = [ "read", "write" ]
 mem_types = [ "global", "shared" ]
 

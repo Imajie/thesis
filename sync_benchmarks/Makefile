@@ -60,7 +60,7 @@ LIBS=${CUDA_LIBS} ${BOOST_LIBS}
 #
 CXXFLAGS=${FLAGS} -ggdb
 CFLAGS=${FLAGS} -ggdb
-NVCC_FLAGS=${FLAGS} $(foreach arch,$(ARCHS),-gencode arch=compute_$(arch),code=\"sm_$(arch),compute_$(arch)\")
+NVCC_FLAGS=${FLAGS} $(foreach arch,$(ARCHS),-gencode arch=compute_$(arch),code=\"sm_$(arch),compute_$(arch)\") -Xptxas -dlcm=cv,-dscm=wt
 LINK_FLAGS=${LIB_DIRS} ${LIBS} -pthread
 
 all: ${TARGET}
