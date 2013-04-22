@@ -9,8 +9,10 @@ import sys
 blocks = range( 10, 400, 1 ) + range( 400, 1000, 10 ) + range( 1000, 2000, 50 )			# HW
 
 threads = range(64, 1024+1, 32 )
-op_types = [ "read", "read_cached", "read_uncached", "write" ]
-mem_types = [ "global", "shared" ]
+#op_types = [ "read", "read_cached", "read_uncached", "write" ]
+#mem_types = [ "global", "shared" ]
+op_types = [ "read"]
+mem_types = [ "shared" ]
 
 print( "Processing data" )
 

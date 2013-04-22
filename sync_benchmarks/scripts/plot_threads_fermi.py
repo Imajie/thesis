@@ -29,6 +29,8 @@ except IOError:
 	print("Error opening file %s"%sys.argv[1])
 	exit()
 
+thread_per_block_to_plot = 256
+
 title = ''
 threads = []
 averages = []
@@ -39,7 +41,7 @@ title = line[0]
 block_nums = map(int, line[1:-1])
 thread_nums = []
 
-skip_count = 3
+skip_count = 1
 skip = 0
 for line in dataFile.xreadlines():
 	data = line.strip().split(',')
@@ -54,29 +56,45 @@ for line in dataFile.xreadlines():
 		thread_nums.append( cur_thread_per_block )
 		
 		for i in range(1,len(data)-1):
-			cur_threads = cur_thread_per_block*block_nums[i-1]
+			#cur_threads = cur_thread_per_block*block_nums[i-1]
 			val = data[i]
 
 			averages[-1].append(float(val))
-			threads[-1].append(cur_threads)
+			threads[-1].append(block_nums[i-1])
 
 # create a new plot to use
 fig = plt.figure()
 ax = fig.add_subplot( 111 )
-ax.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
+#ax.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
+
+idx = thread_nums.index( thread_per_block_to_plot )
+ax.scatter( threads[idx], averages[idx] )
 
 # scatter plot
-i = 0
-for pair in zip( threads, averages ):
-	ax.scatter( pair[0], pair[1], c=colors[i], label=str(thread_nums[i]) )
-	i = i + 1
+#i = 0
+#for pair in zip( threads, averages ):
+#	ax.scatter( pair[0], pair[1], c=colors[i], label=str(thread_nums[i]) )
+#	i = i + 1
+
+L1size = ((2**10)*16)*14 / (4*thread_per_block_to_plot)
+L2size = ((2**10)*768)	 / (4*thread_per_block_to_plot)
+
+# line at full occupancy
+#ax.axvline(x=128, c='g', label='128 Blocks')
+
+# line at L1 cache size
+#ax.axvline(x=L1size, label='L1 cache size (All SMs)')
+
+# line at L1+L2 cache size
+#ax.axvline(x=L2size, c='r', label='L2 cache size')
 
 #ax.set_title( sys.argv[1][:-4] )
-ax.set_xlabel( 'Used Memory' )
+ax.set_xlabel( 'Number of blocks' )
 ax.set_ylabel( 'Average sync cost' )
 #ax.legend(loc='upper left')
 
-ax.set_xlim( [0, 1024*2000] )
+ax.set_xlim( [0, 2000] )
 ax.set_ylim( [0, ax.get_ylim()[1]] )
+
 fig.savefig("%s.png" % (sys.argv[1][:-4]))
 plt.show()

@@ -30,7 +30,7 @@ except IOError:
 	exit()
 
 title = ''
-threads = []
+mem = []
 averages = []
 
 line = dataFile.readline().strip().split(',')
@@ -50,7 +50,7 @@ for line in dataFile.xreadlines():
 
 		cur_thread_per_block = int(data[0])
 		averages.append([])
-		threads.append([])
+		mem.append([])
 		thread_nums.append( cur_thread_per_block )
 		
 		for i in range(1,len(data)-1):
@@ -58,7 +58,7 @@ for line in dataFile.xreadlines():
 			val = data[i]
 
 			averages[-1].append(float(val))
-			threads[-1].append(cur_threads)
+			mem[-1].append(cur_threads*4)
 
 # create a new plot to use
 fig = plt.figure()
@@ -67,16 +67,24 @@ ax.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 
 # scatter plot
 i = 0
-for pair in zip( threads, averages ):
+for pair in zip( mem, averages ):
 	ax.scatter( pair[0], pair[1], c=colors[i], label=str(thread_nums[i]) )
 	i = i + 1
+
+L1size = ((2**10)*48)*13
+L2size = ((2**20)*1.25)
+# line at L1 cache size
+ax.axvline(x=L1size, label='L1 cache size (All SMs)')
+
+# line at L1+L2 cache size
+ax.axvline(x=L2size, c='r', label='L2 cache size')
 
 #ax.set_title( sys.argv[1][:-4] )
 ax.set_xlabel( 'Used Memory' )
 ax.set_ylabel( 'Average sync cost' )
 #ax.legend(loc='upper left')
 
-ax.set_xlim( [0, 1024*2000] )
+ax.set_xlim( [0, 1024*2000*4] )
 ax.set_ylim( [0, ax.get_ylim()[1]] )
 fig.savefig("%s.png" % (sys.argv[1][:-4]))
 plt.show()

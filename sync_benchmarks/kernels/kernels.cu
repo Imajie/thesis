@@ -79,7 +79,7 @@ __global__ void shared_mem_write_kernel( unsigned int *start, unsigned int *end 
 	end[idx] = end_reg;
 
 	// get rid of "never used data" warning
-	if( data[idx2] > 0 )
+	if( data[idx2] >= 0 )
 		start_reg = end_reg;
 }
 

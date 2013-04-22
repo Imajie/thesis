@@ -6,7 +6,9 @@ import os
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker
 from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d import art3d
 
 colors = [ 'b', 'r', 'g' ]
 
@@ -33,28 +35,34 @@ title = line[0]
 block_nums = map(int, line[1:-1])
 thread_nums = []
 
+skip_count = 1
+skip = 0
 for line in dataFile.xreadlines():
 	data = line.strip().split(',')
 
-	blocks = blocks + block_nums
-	thread_nums.append(int(data[0]))
+	skip = skip + 1
+	if( skip >= skip_count ):
+		skip = 0
 
-	for val in data[1:-1]:
-		threads.append(int(data[0]))
+		blocks = blocks + block_nums
+		thread_nums.append(int(data[0]))
 
-		if( val[:2] == '"[' ):
-			entries = val[2:-3].split(';')
-			for entry in entries:
-				pair = entry.split('->')
+		for val in data[1:-1]:
+			threads.append(int(data[0]))
 
-				if( int(pair[0]) not in pcs ):
-					pcs.append(int(pair[0]))
-					averages.append( [ float(pair[1]) ] )
-				else:
-					idx = pcs.index(int(pair[0]))
-					averages[idx].append(float(pair[1]))
-		else:
-			averages.append(float(val))
+			if( val[:2] == '"[' ):
+				entries = val[2:-3].split(';')
+				for entry in entries:
+					pair = entry.split('->')
+
+					if( int(pair[0]) not in pcs ):
+						pcs.append(int(pair[0]))
+						averages.append( [ float(pair[1]) ] )
+					else:
+						idx = pcs.index(int(pair[0]))
+						averages[idx].append(float(pair[1]))
+			else:
+				averages.append(float(val))
 
 # create a new plot to use
 fig = plt.figure()
@@ -71,10 +79,17 @@ else:
 # only 1 average to plot
 	ax.scatter( blocks, threads, averages )
 
-ax.set_title( sys.argv[1][:-4] )
+#ax.set_title( sys.argv[1][:-4] )
 ax.set_xlabel( 'Number of Blocks' )
 ax.set_ylabel( 'Number of Threads/Block' )
 ax.set_zlabel( 'Average sync cost' )
+#ax.set_zscale( 'log' )
+
+# line at different thread numbers per SM
+ax.bar( [ 1536/x for x in range(1,16) ], [ ax.get_zlim()[1] for x in range(1,16) ], ax.get_zlim()[0], zdir='x', width=0 )
+
+ax.yaxis.set_minor_locator(matplotlib.ticker.MultipleLocator(32))
+ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(128))
 
 # surface plot
 #fig = plt.figure()
