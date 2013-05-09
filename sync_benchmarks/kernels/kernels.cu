@@ -12,16 +12,19 @@
  */
 __global__ void global_mem_write_kernel( float* data, unsigned int *start, unsigned int *end )
 {
+	// The index of the current thread
 	int idx = threadIdx.x + (blockDim.x * blockIdx.x);
 
 	unsigned int start_reg, end_reg;
 
+	// memory write
 	data[idx] = idx;
 
-	asm volatile("mov.u32 %0, %%clock;" : "=r"(start_reg));
+	asm volatile("mov.u32 %0, %%clock;" : "=r"(start_reg));		// time we started waiting
 	__syncthreads();
-	asm volatile("mov.u32 %0, %%clock;" : "=r"(end_reg));
+	asm volatile("mov.u32 %0, %%clock;" : "=r"(end_reg));		// time we finished waiting
 
+	// Save times to send back to the CPU
 	start[idx] = start_reg;
 	end[idx] = end_reg;
 }
